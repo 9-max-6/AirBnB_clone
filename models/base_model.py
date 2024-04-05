@@ -7,7 +7,7 @@ Defines all common attributes/methods for other classes
 import uuid
 import datetime
 import copy
-import json
+from models import storage
 
 
 class BaseModel:
@@ -61,6 +61,7 @@ class BaseModel:
             setattr(self, "updated_at", self.get_time())
         else:
             raise Exception("broken object")
+        storage.save(self)
 
     def to_dict(self):
         """
