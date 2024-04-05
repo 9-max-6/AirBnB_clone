@@ -7,6 +7,8 @@ Defines all common attributes/methods for other classes
 import uuid
 import datetime
 import copy
+import json
+
 
 class BaseModel:
     """
