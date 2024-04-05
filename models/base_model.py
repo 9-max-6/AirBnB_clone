@@ -7,6 +7,7 @@ Defines all common attributes/methods for other classes
 import uuid
 import datetime
 
+
 class BaseModel:
     """
     Class that defines all common attributes/methods for other classes
@@ -33,11 +34,12 @@ class BaseModel:
                 if key == "__class__":
                     continue
                 elif key == "created_at" or key == "updated_at":
-                   date_format = "%Y-%m-%dT%H:%M:%S.%f"
-                   self.__dict__[key] = datetime.datetime.strptime(value, date_format)
+                    date_format = "%Y-%m-%dT%H:%M:%S.%f"
+                    a = datetime.datetime.strptime(value, date_format)
+                    self.__dict__[key] = a
                 else:
                     self.__dict__[key] = value
-#*%Y-%m-%dT%H:%M:%S.%f*
+
     @staticmethod
     def get_time():
         """static method to determine current time"""
