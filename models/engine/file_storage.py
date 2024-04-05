@@ -10,7 +10,7 @@ class FileStorage:
     serializes instances to a JSON file and
     deserializes JSON file to instances
     """
-    __file_path = "hard_storage.py"
+    __file_path = "storage.json"
     __objects = {}
 
     def __init__(self, *args, **kwargs):
@@ -22,7 +22,7 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        key = self.__dict__["id"] + str(type(self).__name__)
+        key = obj["id"] + obj["__class__"]
         FileStorage.__objects[key] = obj
 
     def save(self):
@@ -34,7 +34,7 @@ class FileStorage:
         """deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists ; otherwise, do nothing"""
         try:
-            g = open(FileStorage.__objects, 'r', encoding="utf-8")
+            g = open(FileStorage.__file_path, 'r', encoding="utf-8")
             FileStorage.__objects = json.load(g)
         except FileNotFoundError:
             pass

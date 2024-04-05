@@ -10,6 +10,7 @@ import copy
 from models import storage
 
 
+
 class BaseModel:
     """
     Class that defines all common attributes/methods for other classes
@@ -61,7 +62,8 @@ class BaseModel:
             setattr(self, "updated_at", self.get_time())
         else:
             raise Exception("broken object")
-        storage.save(self)
+        storage.new(self.to_dict())
+        storage.save()
 
     def to_dict(self):
         """
