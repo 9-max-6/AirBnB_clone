@@ -7,7 +7,7 @@ Defines all common attributes/methods for other classes
 import uuid
 import datetime
 import copy
-from models import storage
+import models
 
 
 
@@ -62,13 +62,15 @@ class BaseModel:
             setattr(self, "updated_at", self.get_time())
         else:
             raise Exception("broken object")
-        storage.new(self.to_dict())
-        storage.save()
+        models.storage.new(self)
+        models.storage.save()
 
     def to_dict(self):
         """
-        A function to return dict rep of the object"""
-        self.__dict__["__class__"] = self.__class__.__name__
-        self.__dict__["created_at"] = self.__dict__["created_at"].isoformat()
-        self.__dict__["updated_at"] = self.__dict__["updated_at"].isoformat()
-        return self.__dict__
+        A function to return dict rep of the object
+        """
+        new_dict = copy.deepcopy(self.__dict__)
+        new_dict["__class__"] = self.__class__.__name__
+        new_dict["created_at"] = new_dict["created_at"].isoformat()
+        new_dict["updated_at"] = new_dict["updated_at"].isoformat()
+        return new_dict
