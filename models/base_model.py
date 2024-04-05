@@ -44,7 +44,7 @@ class BaseModel:
     def get_time():
         """static method to determine current time"""
         current_dt = datetime.datetime.now()
-        return current_dt.strftime("%Y-%m-%dT%H:%M:%S.%f")
+        return current_dt.isoformat()
 
     def __str__(self):
         """A method to return string rep of the instanc"""
