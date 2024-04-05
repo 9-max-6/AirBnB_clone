@@ -44,10 +44,10 @@ class BaseModel:
     def get_time():
         """static method to determine current time"""
         current_dt = datetime.datetime.now()
-        return current_dt.isoformat()
+        return current_dt.strftime("%Y-%m-%dT%H:%M:%S.%f")
 
     def __str__(self):
-        """A method to return string rep of the instanc"""
+        """A method to return string rep of the instance"""
         a = self.__class__.__name__
         b = self.id
         c = self.__dict__
@@ -64,4 +64,6 @@ class BaseModel:
         """
         A function to return dict rep of the object"""
         self.__dict__["__class__"] = self.__class__.__name__
+        self.__dict__["created_at"] = self.__dict__["created_at"].isoformat()
+        self.__dict__["updated_at"] = self.__dict__["updated_at"].isoformat()
         return self.__dict__
