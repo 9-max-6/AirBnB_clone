@@ -48,7 +48,7 @@ class BaseModel:
 
     def __str__(self):
         """A method to return string rep of the instance"""
-        a = self.__class__.__name__
+        a = type(self).__class__.__name__
         b = self.id
         c = self.__dict__
         return "[{}] ({}) {}".format(a, b, c)
