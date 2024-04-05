@@ -65,8 +65,7 @@ class BaseModel:
     def to_dict(self):
         """
         A function to return dict rep of the object"""
-        new_dict = self.__dict__.copy()
-        self.new_dict["__class__"] = self.__class__.__name__
-        new_dict["created_at"] = new_dict["created_at"].isoformat()
-        new_dict["updated_at"] = new_dict["updated_at"].isoformat()
-        return new_dict
+        self.__dict__["__class__"] = self.__class__.__name__
+        self.__dict__["created_at"] = self.__dict__["created_at"].isoformat()
+        self.__dict__["updated_at"] = self.__dict__["updated_at"].isoformat()
+        return self.__dict__
