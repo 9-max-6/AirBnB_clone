@@ -34,4 +34,4 @@ class TestCases(unittest.TestCase):
         test_base = BaseModel()
 
         test_base_str = str(test_base)
-        self.assertIsNotNone(test_base_str)
+        self.assertNotNone(test_base_str)
