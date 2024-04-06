@@ -5,6 +5,7 @@ module - FileStorage
 import json
 from models import base_model
 
+
 class FileStorage:
     """
     serializes instances to a JSON file and
@@ -42,7 +43,7 @@ class FileStorage:
             for key, value in new_dict.items():
                 obj = base_model.BaseModel(**value)
                 FileStorage.__objects[key] = obj
-            
+
         except FileNotFoundError:
             pass
         except json.JSONDecodeError:
