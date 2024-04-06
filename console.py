@@ -59,7 +59,7 @@ class HBNBComand(cmd.Cmd):
         if len(new_line) > 1:
             try:
                 instance_name = new_line[0]
-                instance_id = " " .join(new_line[1:])
+                instance_id = new_line[1]
             except Exception:
                 pass
             finally:
@@ -76,7 +76,7 @@ class HBNBComand(cmd.Cmd):
                         print("** no instance found **")
 
     @staticmethod
-    def check_instance(self, class_name, class_dict):
+    def check_instance(class_name, class_dict):
         """
         A static method to check if a dictionary has a key with a
         particular name
