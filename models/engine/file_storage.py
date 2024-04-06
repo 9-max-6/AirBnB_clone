@@ -19,6 +19,8 @@ class FileStorage:
 
     def all(self):
         """returns the dictionary __objects"""
+        self.save()
+        self.reload()
         return FileStorage.__objects
 
     def new(self, obj):
@@ -48,3 +50,10 @@ class FileStorage:
             pass
         except json.JSONDecodeError:
             pass
+        
+    def delete(self, obj):
+        """a method to delete a key based on the """
+        self.reload()
+        del self.__objects[obj]
+        self.save()
+        self.reload()
