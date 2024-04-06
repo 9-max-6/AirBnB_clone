@@ -5,6 +5,7 @@ Module - the console
 import cmd
 from models.base_model import BaseModel
 from models import storage
+import shlex
 
 
 class HBNBComand(cmd.Cmd):
@@ -41,6 +42,7 @@ class HBNBComand(cmd.Cmd):
             new_base = BaseModel()
             if (isinstance(new_base, BaseModel)):
                 print("{}".format(new_base.id))
+                new_base.save()
         else:
             print("** class doesn't exist **")
 
@@ -53,11 +55,11 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        new_line = line.split(" ")
+        new_line = line.shlex.split(" ")
         if len(new_line) > 1:
             try:
                 instance_name = new_line[0]
-                instance_id = new_line[1]
+                instance_id = " " .join(new_line[1:])
             except Exception:
                 pass
             finally:
@@ -93,7 +95,7 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
         else:
-            new_args = line.split(" ")
+            new_args = line.shlex.split(" ")
             if new_args[0] not in self.instances:
                 print("** class doesn't exist **")
             else:
@@ -128,7 +130,7 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name is missing **")
             return
-        args = line.split(" ")
+        args = line.shlex.split(" ")
         if args[0] not in self.instances:
             print("** class doesn't exist **")
         elif len(args) == 1:
