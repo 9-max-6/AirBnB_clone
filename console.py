@@ -55,7 +55,7 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
             return
-        new_line = line.shlex.split(" ")
+        new_line = shlex.split(line)
         if len(new_line) > 1:
             try:
                 instance_name = new_line[0]
@@ -95,7 +95,7 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name missing **")
         else:
-            new_args = line.shlex.split(" ")
+            new_args = shlex.split(line)
             if new_args[0] not in self.instances:
                 print("** class doesn't exist **")
             else:
@@ -130,7 +130,7 @@ class HBNBComand(cmd.Cmd):
         if line == "":
             print("** class name is missing **")
             return
-        args = line.shlex.split(" ")
+        args = shlex.split(line)
         if args[0] not in self.instances:
             print("** class doesn't exist **")
         elif len(args) == 1:
