@@ -29,3 +29,9 @@ class TestCases(unittest.TestCase):
         self.assertIsInstance(test_base_dict, dict)
         self.assertEqual(test_base_dict["__class__"], "BaseModel")
         self.assertEqual(test_base_dict["id"], test_base.id)
+
+    def test_str(self):
+        test_base = BaseModel()
+
+        test_base_str = str(test_base)
+        self.assertNotNone(test_base_str)
