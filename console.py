@@ -69,7 +69,7 @@ class HBNBComand(cmd.Cmd):
             class_id = instance_name + "." + instance_id
             new_dict = self.check_instance(class_id, self.storage_dict)
             if new_dict:
-                print(new_dict.to_dict())
+                print(new_dict)
             else:
                 print("** no instance found **")
 
