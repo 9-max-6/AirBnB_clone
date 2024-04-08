@@ -56,24 +56,22 @@ class HBNBComand(cmd.Cmd):
             print("** class name missing **")
             return
         new_line = shlex.split(line)
+        if len(new_line) == 1:
+            print("** instance id missing **")
+        instance_name = new_line[0]
         if len(new_line) > 1:
-            try:
-                instance_name = new_line[0]
-                instance_id = new_line[1]
-            except Exception:
-                pass
-            finally:
-                if instance_name not in self.instances:
-                    print("** class doesn't exist **")
-                if instance_id is None:
-                    print("** instance id missing **")
-                else:
-                    class_id = instance_name + "." + instance_id
-                    new_dict = self.check_instance(class_id, self.storage_dict)
-                    if new_dict:
-                        print(new_dict.to_dict())
-                    else:
-                        print("** no instance found **")
+            instance_id = new_line[1]
+        if instance_name not in self.instances:
+            print("** class doesn't exist **")
+        elif instance_id is None:
+            print("** instance id missing **")
+        else:
+            class_id = instance_name + "." + instance_id
+            new_dict = self.check_instance(class_id, self.storage_dict)
+            if new_dict:
+                print(new_dict.to_dict())
+            else:
+                print("** no instance found **")
 
     @staticmethod
     def check_instance(class_name, class_dict):
