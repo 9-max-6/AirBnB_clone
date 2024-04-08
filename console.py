@@ -99,11 +99,14 @@ class HBNBComand(cmd.Cmd):
             if new_args[0] not in self.instances:
                 print("** class doesn't exist **")
             else:
-                dict_key = ".".join(new_args)
-                if self.check_instance(dict_key, self.storage_dict):
-                    storage.delete(dict_key)
+                if len(new_args) == 1:
+                    print("** instance id missing **")
                 else:
-                    print("** no instance found **")
+                    dict_key = ".".join(new_args)
+                    if self.check_instance(dict_key, self.storage_dict):
+                        storage.delete(dict_key)
+                    else:
+                        print("** no instance found **")
 
     def do_all(self, line):
         """Prints all string representation of all instances based
@@ -142,10 +145,10 @@ class HBNBComand(cmd.Cmd):
                 print("** no instance found **")
                 return
             else:
-                if obj_dict.get(args[2], 0) == 0:
+                if obj_dict.to_dict().get(args[2], 0) == 0:
                     print("** attribute name missing **")
                 else:
-                    obj_dict[args[2]] = args[3]
+                    obj_dict.to_dict()[args[2]] = args[3]
                     storage.save()
 
 
