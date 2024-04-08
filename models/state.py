@@ -1,12 +1,11 @@
 #!/usr/bin/python3
-"""module - city"""
+"""module - state"""
 from models.base_model import BaseModel
 
 
-class City(BaseModel):
-    """class to describe city"""
+class State(BaseModel):
+    """class to describe state"""
     name = ""
-    state_id = ""
 
     def __init__(self, *args, **kwargs):
         if kwargs:

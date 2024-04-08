@@ -8,6 +8,7 @@ from models import storage
 import shlex
 from models.user import User
 
+
 class HBNBComand(cmd.Cmd):
     """
     the class that implements the command intepreter
@@ -124,7 +125,7 @@ class HBNBComand(cmd.Cmd):
                 if item.startswith(line):
                     exists = True
             if not exists:
-                    print("** class doesn't exist **")
+                print("** class doesn't exist **")
             else:
                 for key, value in new_dict.items():
                     if key.startswith(line):
