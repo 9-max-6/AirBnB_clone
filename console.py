@@ -144,18 +144,15 @@ class HBNBComand(cmd.Cmd):
         else:
             class_id = args[0] + "." + args[1]
             obj_dict = self.check_instance(class_id, self.storage_dict)
+            print(obj_dict)
             if not obj_dict:
                 print("** no instance found **")
                 return
             else:
-                try:
-                    if obj_dict.to_dict().get(args[2], 0) == 0:
-                        print("** attribute name missing **")
-                    else:
-                        storage[class_id][[args[2]]] = args[3]
-                        storage.save()
-                except Exception:
-                    pass
+                new_dict = obj_dict.to_dict()
+                new_dict[args[2]] = args[3]
+                new = BaseModel(**new_dict)
+                new.save()
 
 
 if __name__ == '__main__':
