@@ -113,7 +113,7 @@ class HBNBComand(cmd.Cmd):
         new_dict = storage.all()
         if line == "":
             for key, value in new_dict.items():
-                print(value.to_dict())
+                print(value)
         else:
             for item in self.instances:
                 if item.startswith(line):
@@ -123,7 +123,7 @@ class HBNBComand(cmd.Cmd):
             else:
                 for key, value in new_dict.items():
                     if key.startswith(line):
-                        print(value.to_dict())
+                        print(value)
 
     def do_update(self, line):
         """Updates an instance based on the class name
