@@ -144,7 +144,6 @@ class HBNBComand(cmd.Cmd):
         else:
             class_id = args[0] + "." + args[1]
             obj_dict = self.check_instance(class_id, self.storage_dict)
-            print(obj_dict)
             if not obj_dict:
                 print("** no instance found **")
                 return
