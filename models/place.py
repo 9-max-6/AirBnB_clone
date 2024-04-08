@@ -5,8 +5,7 @@ from models.base_model import BaseModel
 
 class Place(BaseModel):
     """class to describe place"""
-    name = ""
-    state_id = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0
@@ -16,6 +15,7 @@ class Place(BaseModel):
     latitude = 0.0
     longitude = 0.0
     amenity_ids = []
+    city_id = ""
 
     def __init__(self, *args, **kwargs):
         if kwargs:
