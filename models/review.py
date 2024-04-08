@@ -3,7 +3,7 @@
 from models.base_model import BaseModel
 
 
-class City(BaseModel):
+class Review(BaseModel):
     """class to describe Review"""
     user_id = ""
     place_id = ""
