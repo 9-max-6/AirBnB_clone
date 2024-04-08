@@ -155,7 +155,10 @@ class HBNBComand(cmd.Cmd):
             else:
                 new_dict = obj_dict.to_dict()
                 new_dict[args[2]] = args[3]
-                new = BaseModel(**new_dict)
+                if args[0] == self.instances[0]:
+                    new = BaseModel(**new_dict)
+                if args[0] == self.instances[1]:
+                    new = User(**new_dict)
                 new.save()
 
 
