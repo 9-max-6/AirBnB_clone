@@ -6,7 +6,7 @@ import cmd
 from models.base_model import BaseModel
 from models import storage
 import shlex
-
+from models.user import User
 
 class HBNBComand(cmd.Cmd):
     """
@@ -41,6 +41,11 @@ class HBNBComand(cmd.Cmd):
         elif line == 'BaseModel':
             new_base = BaseModel()
             if (isinstance(new_base, BaseModel)):
+                print("{}".format(new_base.id))
+                new_base.save()
+        elif line == 'User':
+            new_base = User()
+            if (isinstance(new_base, User)):
                 print("{}".format(new_base.id))
                 new_base.save()
         else:
