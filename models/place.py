@@ -21,4 +21,4 @@ class Place(BaseModel):
         if kwargs:
             super().__init__(**kwargs)
         else:
-            super.__init__()
+            super.()__init__()
