@@ -13,7 +13,7 @@ class HBNBComand(cmd.Cmd):
     the class that implements the command intepreter
     """
     prompt = '(hbnb) '
-    instances = ['BaseModel']
+    instances = ['BaseModel', 'User']
     storage_dict = storage.all()
 
     def do_quit(self, arg):
