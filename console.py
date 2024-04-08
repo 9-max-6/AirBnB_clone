@@ -112,19 +112,20 @@ class HBNBComand(cmd.Cmd):
         """Prints all string representation of all instances based
         or not on the class name"""
         exists = False
-        for item in self.instances:
-            if item.startswith(line):
-                exists = True
-        if not exists:
-            print("** class doesn't exist **")
-        elif line == "":
+        if line == "":
             new_dict = storage.all()
             for key, value in new_dict.items():
-                print(value)
+                print(value.to_dict())
         else:
-            for key, value in new_dict.items():
-                if key.startswith(line):
-                    print(value)
+            for item in self.instances:
+                if item.startswith(line):
+                    exists = True
+            if not exists:
+                    print("** class doesn't exist **")
+            else:
+                for key, value in new_dict.items():
+                    if key.startswith(line):
+                        print(value.to_dict())
 
     def do_update(self, line):
         """Updates an instance based on the class name
@@ -138,6 +139,10 @@ class HBNBComand(cmd.Cmd):
             print("** class doesn't exist **")
         elif len(args) == 1:
             print("** instance id missing **")
+        elif len(args) == 2:
+            print("** attribute name missing **")
+        elif len(args) == 3:
+            print("** value missing **")
         else:
             class_id = args[0] + "." + args[1]
             obj_dict = self.check_instance(class_id, self.storage_dict)
@@ -145,11 +150,14 @@ class HBNBComand(cmd.Cmd):
                 print("** no instance found **")
                 return
             else:
-                if obj_dict.to_dict().get(args[2], 0) == 0:
-                    print("** attribute name missing **")
-                else:
-                    obj_dict.to_dict()[args[2]] = args[3]
-                    storage.save()
+                try:
+                    if obj_dict.to_dict().get(args[2], 0) == 0:
+                        print("** attribute name missing **")
+                    else:
+                        obj_dict.to_dict()[args[2]] = args[3]
+                        storage.save()
+                except Exception:
+                    pass
 
 
 if __name__ == '__main__':
