@@ -130,7 +130,7 @@ class HBNBComand(cmd.Cmd):
         and id by adding or updating attribute (save the change
         into the JSON file)"""
         if line == "":
-            print("** class name missing **")
+            print("** class name is missing **")
             return
         args = shlex.split(line)
         if args[0] not in self.instances:
@@ -152,7 +152,7 @@ class HBNBComand(cmd.Cmd):
                     if obj_dict.to_dict().get(args[2], 0) == 0:
                         print("** attribute name missing **")
                     else:
-                        storage[class_id][[args[2]]] = args[3]
+                        obj_dict.to_dict()[args[2]] = args[3]
                         storage.save()
                 except Exception:
                     pass
