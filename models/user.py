@@ -12,7 +12,7 @@ class User(base_model.BaseModel):
     email = ""
     password = ""
     first_name = ""
-    last_mame = ""
+    last_name = ""
 
     def __init__(self):
         super().__init__()
