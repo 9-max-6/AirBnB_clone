@@ -46,6 +46,7 @@ class HBNBComand(cmd.Cmd):
         if not line:
             print("** class name missing **")
         if line in self.instances:
+            print(line)
             new_base = eval(f'{line}()')
             print("{}".format(new_base.id))
             new_base.save()
