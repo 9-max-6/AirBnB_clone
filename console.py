@@ -167,11 +167,17 @@ class HBNBComand(cmd.Cmd):
             new_line = line.split('.')
             class_name = new_line[0]
             command = new_line[1]
+            new_dict = storage.all()
             if command == 'all()':
-                new_dict = storage.all()
                 for key, value in new_dict.items():
                     if key.startswith(class_name):
                         print(value)
+            elif command == 'count()':
+                count = 0
+                for key, value in new_dict.items():
+                    if key.startswith(class_name):
+                        count += 1
+                print(count)
 
 
 if __name__ == '__main__':
