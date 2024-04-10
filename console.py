@@ -190,15 +190,19 @@ class HBNBComand(cmd.Cmd):
                         present = True
                 if not present:
                     print("** no instance found **")
-            elif command.startswith("destroy"):
-                id = command[9:-2]
-                present = False
-                for key, value in new_dict.items():
-                    if key.endswith(id):
-                        present = True
-                        storage.delete(key)
-                if not present:
-                    print("** no instance found **")
+        elif command.startswith('destroy'):
+            id = command[9:-2]
+            present = False
+            keys_to_delete = []
+            for key, value in new_dict.items():
+                if key.endswith(id):
+                    present = True
+                    keys_to_delete.append(key)
+            for key in keys_to_delete:
+                del new_dict[key]
+                storage.delete(key)
+            if not present:
+                print("** no instance found **")
 
 
 if __name__ == '__main__':
