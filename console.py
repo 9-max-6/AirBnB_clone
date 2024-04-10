@@ -161,6 +161,18 @@ class HBNBComand(cmd.Cmd):
                 new = eval(f'{class_name}(**new_dict)')
                 new.save()
 
+    def default(self, line):
+        """A function to handle all other commands"""
+        if '.' in line:
+            new_line = line.split('.')
+            class_name = new_line[0]
+            command = new_line[1]
+            if command == 'all()':
+                new_dict = storage.all()
+                for key, value in new_dict.items():
+                    if key.startswith(class_name):
+                        print(value)
+
 
 if __name__ == '__main__':
     HBNBComand().cmdloop()
