@@ -13,27 +13,27 @@ class TestFileStorage(unittest.TestCase):
     """
     new = BaseModel()
 
-    def checkFile(self):
+    def test_File(self):
         """check the presence of a file"""
         self.assertIsNotNone(storage._FileStorage__file_path)
 
-    def checkObjects(self):
+    def test_Objects(self):
         """check the presence of a dictionary"""
-        self.assertIsNone(storage._FileStorage__objects)
+        self.assertIsNotNone(storage._FileStorage__objects)
 
-    def checkAll(self):
+    def test_All(self):
         """ Check if the return value of the all method is dict"""
         self.assertIsInstance(storage.all(), dict)
 
-    def checkCreationOfNewObject(self):
+    def test_CreationOfNewObject(self):
         """check if the newly created object is added to the dict"""
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
         b = self.new.to_dict()["id"]
         object_key = a + "." + b
-        self.assertIn(object_key, storage.all)
+        self.assertIn(object_key, storage.all())
 
-    def checkReload(self):
+    def test_Reload(self):
         """check if the reloaded objects has the last added object"""
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
@@ -41,13 +41,13 @@ class TestFileStorage(unittest.TestCase):
         object_key = a + "." + b
         storage.save()
         storage.reload()
-        self.assertIn(object_key, storage.all)
+        self.assertIn(object_key, storage.all())
 
-    def checkDelete(self):
+    def test_Delete(self):
         """check if the deletion function works"""
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
         b = self.new.to_dict()["id"]
         object_key = a + "." + b
-        storage.delete(self.new)
-        self.assertNotIn(object, storage.all)
+        storage.delete(object_key)
+        self.assertNotIn(object_key, storage.all())

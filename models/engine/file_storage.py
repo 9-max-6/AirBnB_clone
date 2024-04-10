@@ -50,9 +50,11 @@ class FileStorage:
             pass
         except json.JSONDecodeError:
             pass
+        finally:
+            g.close()
 
     def delete(self, obj):
-        """a method to delete a key based on the """
+        """a method to delete an object based on the key"""
         self.reload()
         del self.__objects[obj]
         self.save()
