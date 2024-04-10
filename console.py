@@ -178,6 +178,18 @@ class HBNBComand(cmd.Cmd):
                     if key.startswith(class_name):
                         count += 1
                 print(count)
+            elif command.startswith('show'):
+                id = command[5:-1]
+                print(id)
+                for key, value in new_dict.items():
+                    key_class = key.split('.')[0]
+                    key_id = key.split('.')[1]
+                    print(key_id)
+                    if key_id == id and key_class == class_name:
+                        print(value)
+                        return
+                print("** no instance found")
+                
 
 
 if __name__ == '__main__':
