@@ -30,7 +30,7 @@ class TestFileStorage(unittest.TestCase):
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
         b = self.new.to_dict()["id"]
-        object_key = key = a + "." + b
+        object_key = a + "." + b
         self.assertIn(object_key, storage.all)
 
     def checkReload(self):
@@ -38,7 +38,7 @@ class TestFileStorage(unittest.TestCase):
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
         b = self.new.to_dict()["id"]
-        object_key = key = a + "." + b
+        object_key = a + "." + b
         storage.save()
         storage.reload()
         self.assertIn(object_key, storage.all)
@@ -48,6 +48,6 @@ class TestFileStorage(unittest.TestCase):
         storage.new(self.new)
         a = self.new.to_dict()["__class__"]
         b = self.new.to_dict()["id"]
-        object_key = key = a + "." + b
+        object_key = a + "." + b
         storage.delete(self.new)
         self.assertNotIn(object, storage.all)
