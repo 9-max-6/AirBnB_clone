@@ -206,8 +206,7 @@ class HBNBComand(cmd.Cmd):
                 new_line = line.split(',')
                 a = b = c =""
                 if new_line[1].strip().startswith('{'):
-                    str_dict = new_line[1]
-                    print(str_dict)
+                    str_dict = new_line[1]    
                     new_dict = eval(str_dict)
                     id = new_line[0]
                     for key, value in new_dict.items():
