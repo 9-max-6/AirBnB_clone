@@ -13,7 +13,7 @@ class TestCases(unittest.TestCase):
         self.assertIsNotNone(test_base.id)
         self.assertIsNotNone(test_base.created_at)
         self.assertIsNotNone(test_base.updated_at)
-    
+
     def test_save(self):
         test_base = BaseModel()
 
@@ -21,7 +21,7 @@ class TestCases(unittest.TestCase):
         test_base.save()
 
         self.assertNotEqual(dummy, test_base.updated_at)
-    
+
     def test_to_dict(self):
         test_base = BaseModel()
 

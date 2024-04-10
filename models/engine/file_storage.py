@@ -50,7 +50,7 @@ class FileStorage:
             pass
         except json.JSONDecodeError:
             pass
-        
+
     def delete(self, obj):
         """a method to delete a key based on the """
         self.reload()
