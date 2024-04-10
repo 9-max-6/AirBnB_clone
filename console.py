@@ -7,6 +7,11 @@ from models.base_model import BaseModel
 from models import storage
 import shlex
 from models.user import User
+from  models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class HBNBComand(cmd.Cmd):
@@ -40,16 +45,10 @@ class HBNBComand(cmd.Cmd):
         """a function to create a new class of type <line>"""
         if not line:
             print("** class name missing **")
-        elif line == 'BaseModel':
-            new_base = BaseModel()
-            if (isinstance(new_base, BaseModel)):
-                print("{}".format(new_base.id))
-                new_base.save()
-        elif line == 'User':
-            new_base = User()
-            if (isinstance(new_base, User)):
-                print("{}".format(new_base.id))
-                new_base.save()
+        if line in self.instances:
+            new_base = eval(f'{line}()')
+            print("{}".format(new_base.id))
+            new_base.save()
         else:
             print("** class doesn't exist **")
 
