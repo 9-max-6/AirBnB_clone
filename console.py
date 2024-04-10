@@ -205,15 +205,23 @@ class HBNBComand(cmd.Cmd):
                 line = command[7:-1]
                 new_line = line.split(',')
                 a = b = c =""
-                try:
-                    a = new_line[0].strip()
-                    b = new_line[1].strip()
-                    c = new_line [2].strip()
-                except IndexError:
-                    pass
-                final_line = (f'{class_name} {a} {b} {c}')
-                self.do_update(final_line)
-
+                if new_line[1].strip().startswith('{'):
+                    str_dict = new_line[1]
+                    print(str_dict)
+                    new_dict = eval(str_dict)
+                    id = new_line[0]
+                    for key, value in new_dict.items():
+                        final_line = (f'{class_name} {id} {key} {value}')
+                        self.do_update(final_line)
+                else: 
+                    try:
+                        a = new_line[0].strip()
+                        b = new_line[1].strip()
+                        c = new_line [2].strip()
+                    except IndexError:
+                        pass
+                    final_line = (f'{class_name} {a} {b} {c}')
+                    self.do_update(final_line)
 
 
 if __name__ == '__main__':
