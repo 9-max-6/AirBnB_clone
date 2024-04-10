@@ -32,6 +32,7 @@ class TestCases(unittest.TestCase):
 
     def test_str(self):
         test_base = BaseModel()
-
+        name = type(test_base).__name__
         test_base_str = str(test_base)
-        self.assertIsNotNone(test_base_str)
+        self.assertEqual(test_base_str, '[{}] ({}) {}'.format(name, test_base.id,
+                         test_base.__dict__))
