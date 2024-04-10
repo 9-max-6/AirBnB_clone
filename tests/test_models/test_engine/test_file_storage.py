@@ -5,6 +5,7 @@ test module - class Filestorage
 from models.base_model import BaseModel
 import unittest
 from models import storage
+import json
 
 
 class TestFileStorage(unittest.TestCase):
