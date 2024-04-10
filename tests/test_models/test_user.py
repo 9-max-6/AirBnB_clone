@@ -39,4 +39,4 @@ class UserTests(unittest.TestCase):
 
     def testFirstName(self):
         """test the attributes of the object"""
-        self.assertIsNone(self.new.last_name)
+        self.assertIsNotNone(self.new.last_name)
