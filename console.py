@@ -14,7 +14,8 @@ class HBNBComand(cmd.Cmd):
     the class that implements the command intepreter
     """
     prompt = '(hbnb) '
-    instances = ['BaseModel', 'User']
+    instances = ['BaseModel', 'User', 'State', 'City', 'Review',
+                 'Place', 'Amenity']
     storage_dict = storage.all()
 
     def do_quit(self, arg):
@@ -156,10 +157,8 @@ class HBNBComand(cmd.Cmd):
             else:
                 new_dict = obj_dict.to_dict()
                 new_dict[args[2]] = args[3]
-                if args[0] == self.instances[0]:
-                    new = BaseModel(**new_dict)
-                if args[0] == self.instances[1]:
-                    new = User(**new_dict)
+                class_name = args[0]
+                new = eval(f'{class_name}(**new_dict)')
                 new.save()
 
 
