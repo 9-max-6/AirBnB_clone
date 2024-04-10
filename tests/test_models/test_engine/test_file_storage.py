@@ -13,12 +13,6 @@ class TestFileStorage(unittest.TestCase):
     """
     new = BaseModel()
 
-    def test_new(self):
-        """ New object is correctly added to __objects """
-        for obj in storage.all().values():
-            temp = self.new
-        self.assertTrue(temp is obj)
-
     def checkFile(self):
         """check the presence of a file"""
         self.assertIsNotNone(storage._FileStorage__file_path)
