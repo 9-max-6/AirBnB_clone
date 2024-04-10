@@ -40,18 +40,15 @@ class FileStorage:
         """deserializes the JSON file to __objects (only if the JSON file
         (__file_path) exists ; otherwise, do nothing"""
         try:
-            g = open(FileStorage.__file_path, 'r', encoding="utf-8")
-            new_dict = json.load(g)
-            for key, value in new_dict.items():
-                obj = base_model.BaseModel(**value)
-                FileStorage.__objects[key] = obj
-
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as g:
+                new_dict = json.load(g)
+                for key, value in new_dict.items():
+                    obj = base_model.BaseModel(**value)
+                    FileStorage.__objects[key] = obj
         except FileNotFoundError:
             pass
         except json.JSONDecodeError:
             pass
-        finally:
-            g.close()
 
     def delete(self, obj):
         """a method to delete an object based on the key"""
