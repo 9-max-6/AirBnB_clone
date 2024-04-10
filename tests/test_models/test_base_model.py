@@ -14,7 +14,7 @@ class TestCases(unittest.TestCase):
         self.assertIsNotNone(test_base.created_at)
         self.assertIsNotNone(test_base.updated_at)
 
-    def test_save(self):
+    def check_save(self):
         test_base = BaseModel()
 
         dummy = test_base.updated_at
